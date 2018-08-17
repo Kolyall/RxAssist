@@ -1,0 +1,100 @@
+apply plugin: 'com.android.library'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/appVersion.gradle'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+
+        versionCode appVersionCode
+        versionName appVersionName
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'           //Some libraries have issues with this.
+        disable 'OldTargetApi'             //Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'IconDensities'            //For testing purpose. This is safe to remove.
+        disable 'IconMissingDensityFolder' //For testing purpose. This is safe to remove.
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation "org.parceler:parceler-api:${parcelerVersion}"
+    annotationProcessor "org.parceler:parceler:${parcelerVersion}"
+
+    implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}"
+
+    implementation "com.google.dagger:dagger:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+
+    implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    implementation "javax.inject:javax.inject:${javaxInjectVersion}"
+    implementation "com.android.support:support-annotations:${androidAnnotationsVersion}"
+
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+
+    // rxjava
+    implementation "io.reactivex:rxjava:${rxJavaVersion}"
+    implementation "io.reactivex:rxandroid:${rxAndroidVersion}"
+    implementation "com.github.davidmoten:rxjava-extras:${rxExtrasVersion}"
+
+    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+    implementation "com.squareup.phrase:phrase:${phraseVersion}"
+
+    //region maven mavenLocal
+    api 'com.github.kolyall:assist-android-sdk:1.5.0'
+    //endregion
+    //region maven { url "https://dl.bintray.com/nickunuchek/maven" }
+    api 'com.github.kolyall:rx-android-utils:1.0.0'
+    api 'com.github.kolyall:utils:1.0.2'
+    //endregion
+
+    //region maven { url "https://jitpack.io" }
+    api('com.github.ihsanbal:LoggingInterceptor:2.0.5') {
+        exclude group: 'org.json', module: 'json'
+    }
+    //endregion
+}
+
+// Place it at the end of the file
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    }
+}
+
+apply from: 'libraryInfo.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/artifactsSetup.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/installSetup.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/bintraySetup.gradle'
+apply from: 'mavenCustom.gradle'
