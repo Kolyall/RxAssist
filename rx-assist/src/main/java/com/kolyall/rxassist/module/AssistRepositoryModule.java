@@ -2,10 +2,10 @@ package com.kolyall.rxassist.module;
 
 import android.content.Context;
 
-import com.assist.api.models.AssistConfig;
-import com.assist.api.service.repositories.AssistRepository;
-import com.assist.api.service.repositories.HttpApiAssistRepository;
-import com.assist.api.utils.AssistManager;
+import com.kolyall.rxassist.models.AssistConfig;
+import com.kolyall.rxassist.repositories.AssistRepository;
+import com.kolyall.rxassist.repositories.HttpApiAssistRepository;
+import com.kolyall.rxassist.utils.AssistManager;
 
 import javax.inject.Singleton;
 

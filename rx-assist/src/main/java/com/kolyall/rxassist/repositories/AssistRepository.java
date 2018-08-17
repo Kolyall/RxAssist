@@ -1,6 +1,6 @@
 package com.kolyall.rxassist.repositories;
 
-import com.assist.api.models.AssistTransactionRequest;
+import com.kolyall.rxassist.models.AssistTransactionRequest;
 
 import ru.assisttech.sdk.AssistResult;
 import rx.Observable;

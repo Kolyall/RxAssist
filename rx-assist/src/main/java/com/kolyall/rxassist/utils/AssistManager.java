@@ -2,9 +2,9 @@ package com.kolyall.rxassist.utils;
 
 import android.app.Activity;
 
-import com.assist.api.models.AssistConfig;
-import com.assist.api.models.AssistTransactionRequest;
-import com.assist.api.models.AssistUser;
+import com.kolyall.rxassist.models.AssistConfig;
+import com.kolyall.rxassist.models.AssistTransactionRequest;
+import com.kolyall.rxassist.models.AssistUser;
 
 import java.util.Calendar;
 

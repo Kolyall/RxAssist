@@ -2,8 +2,8 @@ package com.kolyall.rxassist.repositories;
 
 import android.app.Activity;
 
-import com.assist.api.models.AssistConfig;
-import com.assist.api.models.AssistTransactionRequest;
+import com.kolyall.rxassist.models.AssistConfig;
+import com.kolyall.rxassist.models.AssistTransactionRequest;
 import com.utils.rxandroid.exceptions.FlowException;
 
 import ru.assisttech.sdk.AssistPaymentData;
