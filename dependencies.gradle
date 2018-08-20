@@ -30,4 +30,7 @@ ext {
     activitystarterVersion = '1.11-beta'
     picassoVersion = '2.5.2'
     gsonVersion = '2.8.1'
+    //kolyall
+    utilsVersion = '1.0.2'
+    rxAndroidUtilsVersion = '1.0.3'
 }
