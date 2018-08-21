@@ -65,8 +65,8 @@ publishing {
                 configurations.compile.getAllDependencies().each { dep -> addDependency(dep, "compile") }
                 // List all "api" dependencies (for new Gradle) as "compile" dependencies
                 configurations.api.getAllDependencies().each { dep -> addDependency(dep, "compile") }
-                // List all "implementation" dependencies (for new Gradle) as "runtime" dependencies
-                configurations.implementation.getAllDependencies().each { dep -> addDependency(dep, "runtime") }
+//                // List all "implementation" dependencies (for new Gradle) as "runtime" dependencies
+//                configurations.implementation.getAllDependencies().each { dep -> addDependency(dep, "runtime") }
             }
         }
     }
