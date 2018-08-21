@@ -31,6 +31,6 @@ ext {
     picassoVersion = '2.5.2'
     gsonVersion = '2.8.1'
     //kolyall
-    utilsVersion = '1.0.2'
+    utilsVersion = '1.0.3'
     rxAndroidUtilsVersion = '1.0.3'
 }

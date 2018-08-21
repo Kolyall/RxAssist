@@ -72,8 +72,8 @@ dependencies {
     }
     //endregion
     //region maven { url "https://dl.bintray.com/nickunuchek/maven" }
-    api "com.github.kolyall:rx-android-utils:${rxAndroidUtilsVersion}"
-    api "com.github.kolyall:utils:${utilsVersion}"
+    implementation "com.github.kolyall:rx-android-utils:${rxAndroidUtilsVersion}"
+    implementation "com.github.kolyall:utils:${utilsVersion}"
     //endregion
 
     //region maven { url "https://jitpack.io" }
