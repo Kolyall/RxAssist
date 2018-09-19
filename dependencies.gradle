@@ -32,5 +32,5 @@ ext {
     gsonVersion = '2.8.1'
     //kolyall
     utilsVersion = '1.0.3'
-    rxAndroidUtilsVersion = '1.0.3'
+    rxAndroidUtilsVersion = '1.0.6'
 }
