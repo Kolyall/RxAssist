@@ -67,7 +67,7 @@ dependencies {
     implementation "com.squareup.phrase:phrase:${phraseVersion}"
 
     //region maven mavenLocal
-    api ('com.github.kolyall:assist-android-sdk:1.5.2'){
+    api ('com.github.kolyall:assist-android-sdk:1.5.3'){
         exclude group: 'com.android.support'
     }
     //endregion
