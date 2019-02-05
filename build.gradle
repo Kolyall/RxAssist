@@ -17,6 +17,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         maven {
             // change URLs to point to your repos, e.g. http://my.org/repo
             def mavenCustom = uri("d:/Android/workspace/gramophone-libraries-android/maven/repository")

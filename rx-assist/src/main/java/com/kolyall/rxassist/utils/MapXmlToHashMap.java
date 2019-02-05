@@ -74,6 +74,7 @@ public class MapXmlToHashMap implements Func1<String, Map<String, String>> {
                     currentTag = "";
                 } else if (eventType == XmlPullParser.TEXT) {
                     if (responseFields.containsKey(currentTag)) {
+                        responseFields.remove(currentTag);
                         responseFields.put(currentTag, parser.getText());
                     }
                 }

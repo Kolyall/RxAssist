@@ -22,8 +22,16 @@ public class AssistManager {
     private final AssistPayEngine mEngine;
 
     public AssistManager(AssistConfig assistConfig, AssistPayEngine engine) {
-        mAssistConfig = assistConfig;
+        this.mAssistConfig = assistConfig;
         this.mEngine = engine;
+    }
+
+    public AssistConfig getAssistConfig() {
+        return mAssistConfig;
+    }
+
+    public AssistPayEngine getEngine() {
+        return mEngine;
     }
 
     public void makeCardPayWeb(Activity activity, AssistUser assistUser, PayEngineListener payEngineListener,
