@@ -1,6 +1,6 @@
 ext {
     //Android
-    androidBuildToolsVersion = "27.0.3"
+    androidBuildToolsVersion = "28.0.3"
     androidMinSdkVersion = 19
     androidTargetSdkVersion = 23
     androidCompileSdkVersion = 28
@@ -13,7 +13,7 @@ ext {
     googleLibVer = '15.0.1'
     firebaseLibVer = '15.0.2'
 
-    rxJavaVersion = '1.3.0'
+    rxJavaVersion = '1.3.3'
     rxAndroidVersion = '1.2.1'
     rxExtrasVersion = '0.8.0.6'
     javaxAnnotationVersion = '1.0'
@@ -32,5 +32,5 @@ ext {
     gsonVersion = '2.8.1'
     //kolyall
     utilsVersion = '1.0.4'
-    rxAndroidUtilsVersion = '1.0.7'
+    rxAndroidUtilsVersion = '1.0.9'
 }
