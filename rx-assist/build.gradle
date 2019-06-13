@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/appVersion.gradle'
 
 android {
@@ -36,33 +39,27 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-
-    implementation "org.parceler:parceler-api:${parcelerVersion}"
-    annotationProcessor "org.parceler:parceler:${parcelerVersion}"
-
     implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
     implementation "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}"
 
     implementation "com.google.dagger:dagger:${daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
 
     implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
     implementation "javax.inject:javax.inject:${javaxInjectVersion}"
-    implementation "com.android.support:support-annotations:${androidAnnotationsVersion}"
+    implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation "com.google.code.gson:gson:${gsonVersion}"
 
     // rxjava
-    implementation "io.reactivex:rxjava:${rxJavaVersion}"
-    implementation "io.reactivex:rxandroid:${rxAndroidVersion}"
-    implementation "com.github.davidmoten:rxjava-extras:${rxExtrasVersion}"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 
     implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
     implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitConverterGsonVersion}"
     implementation "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
     implementation "com.squareup.phrase:phrase:${phraseVersion}"
 
@@ -74,6 +71,8 @@ dependencies {
     //region maven { url "https://dl.bintray.com/nickunuchek/maven" }
     implementation "com.github.kolyall:rx-android-utils:${rxAndroidUtilsVersion}"
     implementation "com.github.kolyall:utils:${utilsVersion}"
+    compile "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //endregion
 
 }
@@ -85,13 +84,16 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
     }
 }
-
-apply from: 'libraryInfo.gradle'
-apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/artifactsSetup.gradle'
-apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/installSetup.gradle'
-apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/bintraySetup.gradle'
-apply from: 'mavenCustom.gradle'
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/libraryInfo.gradle'
+    apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/artifactsSetup.gradle'
+    apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/installSetup.gradle'
+    apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/bintraySetup.gradle'
+}
+repositories {
+    mavenCentral()
+}

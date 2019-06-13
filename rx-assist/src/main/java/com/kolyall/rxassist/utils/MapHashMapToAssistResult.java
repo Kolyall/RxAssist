@@ -2,16 +2,17 @@ package com.kolyall.rxassist.utils;
 
 import java.util.Map;
 
+import io.reactivex.functions.Function;
 import ru.assisttech.sdk.AssistResult;
-import rx.functions.Func1;
 
 /**
  * Created by User on 26.04.2017.
  */
 
-public class MapHashMapToAssistResult implements Func1<Map<String, String>, AssistResult> {
+public class MapHashMapToAssistResult implements Function<Map<String, String>, AssistResult> {
+
     @Override
-    public AssistResult call(Map<String, String> responseFields) {
+    public AssistResult apply(Map<String, String> responseFields) {
         AssistResult result = new AssistResult();
         if (!responseFields.get("responsecode").isEmpty()) {
             /* Success */

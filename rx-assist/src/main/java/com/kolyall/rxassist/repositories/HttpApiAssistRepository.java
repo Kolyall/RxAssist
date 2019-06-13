@@ -6,6 +6,8 @@ import com.kolyall.rxassist.models.AssistConfig;
 import com.kolyall.rxassist.models.AssistTransactionRequest;
 import com.utils.rxandroid.exceptions.FlowException;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 import ru.assisttech.sdk.AssistPaymentData;
 import ru.assisttech.sdk.AssistResult;
 import ru.assisttech.sdk.FieldName;
@@ -13,8 +15,6 @@ import ru.assisttech.sdk.engine.AssistPayEngine;
 import ru.assisttech.sdk.processor.AssistProcessorListener;
 import ru.assisttech.sdk.processor.AssistRecurrentPayProcessor;
 import ru.assisttech.sdk.storage.AssistTransaction;
-import rx.Observable;
-import rx.Subscriber;
 
 import static ru.assisttech.sdk.storage.AssistTransaction.PaymentMethod.CARD_TERMINAL;
 
@@ -35,9 +35,7 @@ public class HttpApiAssistRepository implements AssistRepository {
 
     @Override
     public Observable<AssistResult> recurrentCardPayment(String billNumber, AssistTransactionRequest transaction) {
-        return Observable.unsafeCreate((Subscriber<? super AssistResult> subscriber) -> {
-            if (subscriber.isUnsubscribed()) return;
-
+        return Observable.unsafeCreate((Observer<? super AssistResult> subscriber) -> {
             AssistPaymentData data = new AssistPaymentData();
             data.setMerchantId(mAssistConfig.getAssistMerchantId());
             data.setLogin(mAssistConfig.getAssistLogin());
@@ -67,26 +65,22 @@ public class HttpApiAssistRepository implements AssistRepository {
             processor.setListener(new AssistProcessorListener() {
                 @Override
                 public void onFinished(long id, AssistResult result) {
-                    if (subscriber.isUnsubscribed()) return;
                     subscriber.onNext(result);
-                    subscriber.onCompleted();
+                    subscriber.onComplete();
                 }
 
                 @Override
                 public void onError(long id, String message) {
-                    if (subscriber.isUnsubscribed()) return;
                     subscriber.onError(new RuntimeException(message));
                 }
 
                 @Override
                 public void onNetworkError(long id, String message) {
-                    if (subscriber.isUnsubscribed()) return;
                     subscriber.onError(new RuntimeException(message));
                 }
 
                 @Override
                 public void onTerminated(long id) {
-                    if (subscriber.isUnsubscribed()) return;
                     subscriber.onError(new RuntimeException());
                 }
 

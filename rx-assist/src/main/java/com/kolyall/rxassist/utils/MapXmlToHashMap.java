@@ -10,15 +10,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import rx.functions.Func1;
+import io.reactivex.functions.Function;
 
 /**
  * Created by User on 26.04.2017.
  */
 
-public class MapXmlToHashMap implements Func1<String, Map<String, String>> {
+public class MapXmlToHashMap implements Function<String, Map<String, String>> {
+
     @Override
-    public Map<String, String> call(String body) {
+    public Map<String, String> apply(String body) {
         Map<String, String> responseFields = new HashMap<>();
         responseFields.put("ordernumber", "");
         responseFields.put("billnumber", "");
