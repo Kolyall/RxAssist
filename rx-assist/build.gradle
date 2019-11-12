@@ -54,7 +54,7 @@ dependencies {
     implementation "com.google.code.gson:gson:${gsonVersion}"
 
     // rxjava
-    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.13"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 
     implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
@@ -71,8 +71,8 @@ dependencies {
     //region maven { url "https://dl.bintray.com/nickunuchek/maven" }
     implementation "com.github.kolyall:rx-android-utils:${rxAndroidUtilsVersion}"
     implementation "com.github.kolyall:utils:${utilsVersion}"
-    compile "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
     //endregion
 
 }
